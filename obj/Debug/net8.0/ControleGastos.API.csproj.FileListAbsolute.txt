@@ -132,3 +132,4 @@
 /Users/weller/Desktop/Sistema de controle de gastos residenciais/ControleGastos/ControleGastos.API/obj/Debug/net8.0/ControleGastos.API.pdb
 /Users/weller/Desktop/Sistema de controle de gastos residenciais/ControleGastos/ControleGastos.API/obj/Debug/net8.0/ControleGastos.API.genruntimeconfig.cache
 /Users/weller/Desktop/Sistema de controle de gastos residenciais/ControleGastos/ControleGastos.API/obj/Debug/net8.0/ref/ControleGastos.API.dll
+/Users/weller/Desktop/Sistema de controle de gastos residenciais/ControleGastos/ControleGastos.API/obj/Debug/net8.0/ControleGastos.API.sourcelink.json

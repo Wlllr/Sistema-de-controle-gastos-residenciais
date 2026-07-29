@@ -15,7 +15,7 @@ namespace ControleGastos.API.Data
 
         // tive que comentar essa linha. Estava dando erro no build
         // aparentemente, o .net nao da conflito nao reconhecendo o enum como tipo, o considerando um struct
-        //public DbSet<TipoTransacao> Transacoes { get; set; }
+        public DbSet<Transacao> Transacoes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
