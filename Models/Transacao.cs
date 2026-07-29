@@ -9,7 +9,7 @@ namespace ControleGastos.API.Models
 
         public decimal Valor { get; set; }
 
-        public TipoTransacao tipo { get; set; }
+        public TipoTransacao Tipo { get; set; }
 
         // Chave estrangeira (eh o identificador de outra entidade que usamos para conectar a nossa entidade atual a outra)
         public int PessoaId { get; set; } // N para 1
