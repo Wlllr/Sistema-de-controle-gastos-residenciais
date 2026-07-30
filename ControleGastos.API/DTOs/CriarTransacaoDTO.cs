@@ -3,7 +3,7 @@ using ControleGastos.API.Models;
 
 namespace ControleGastos.API.DTOs
 {
-    public class CriarTransacaoDto
+    public class CriarTransacaoDTO
     {
         [Required(ErrorMessage = "A descrição é obrigatória.")]
         public string Descricao { get; set; } = string.Empty;
