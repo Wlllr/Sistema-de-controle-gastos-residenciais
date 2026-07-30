@@ -1,55 +1,28 @@
-using ControleGastos.API.Data;
-using ControleGastos.API.DTOs;
-using ControleGastos.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using ControleGastos.API.DTOs;
+using ControleGastos.API.Services;
 
-namespace ControleGatos.API.Controllers
+namespace ControleGastos.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TotaisController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TotaisController : ControllerBase
+    private readonly IPessoaService _pessoaService;
+
+    public TotaisController(IPessoaService pessoaService)
     {
-        private readonly AppDbContext _context;
+        _pessoaService = pessoaService;
+    }
 
-        public TotaisController(AppDbContext context)
-        {
-            _context = context;
-        }
-
-        /// <summary>
-        /// endpoint para listar todas as transacoes criadas
-        /// GET: api/transacoes
-        /// </summary>
-        [HttpGet]
-        public async Task<ActionResult<RelatorioTotaisDto>> RetornaTotais()
-        {
-            // busca todas as pessoas e suas respectivas transacoes
-            var pessoas = await _context.Pessoas
-                .Include(p => p.Transacoes)
-                .ToListAsync();
-
-            var resumoPessoas = pessoas.Select(p => new ResumoPessoaDto 
-            {
-                Id = p.Id,
-                Nome = p.Nome,
-                Idade = p.Idade,
-                TotalReceitas = p.Transacoes
-                    .Where(t => t.Tipo == TipoTransacao.Receita)
-                    .Sum(t => t.Valor),
-                TotalDespesas = p.Transacoes
-                    .Where(t => t.Tipo == TipoTransacao.Despesa)
-                    .Sum(t => t.Valor)
-            }).ToList();
-
-            var relatorio = new RelatorioTotaisDto
-            {
-                Pessoas = resumoPessoas,
-                TotalGeralReceitas = resumoPessoas.Sum(p => p.TotalReceitas),
-                TotalGeralDespesas = resumoPessoas.Sum(p => p.TotalDespesas)
-            };
-
-            return Ok(relatorio);
-        }
+    /// <summary>
+    /// Endpoint para consultar totais gerais de receitas e despesas por pessoa e no geral
+    /// GET: api/totais
+    /// </summary>
+    [HttpGet]
+    public async Task<ActionResult<RelatorioTotaisDto>> RetornaTotais()
+    {
+        var relatorio = await _pessoaService.ObterTotaisAsync();
+        return Ok(relatorio);
     }
 }
