@@ -45,3 +45,5 @@ export enum TipoTransacao {
     totalGeralDespesas: number;
     saldoLiquidoGeral: number;
   }
+
+  export type PessoaTotais = ResumoPessoa;
